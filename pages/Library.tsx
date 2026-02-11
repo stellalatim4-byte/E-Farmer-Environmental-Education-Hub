@@ -29,7 +29,7 @@ const Library: React.FC<LibraryProps> = () => {
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {['all', 'cooperative', 'refugee', 'vsla', 'household'].map(cat => (
+          {['all', 'general', 'refugee', 'vsla', 'household'].map(cat => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
@@ -79,6 +79,64 @@ const Library: React.FC<LibraryProps> = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* National Agricultural Initiatives & Projects */}
+        <div className="mb-20">
+          <div className="flex items-center space-x-4 mb-8">
+            <div className="h-10 w-2 bg-green-700 rounded-full"></div>
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight">National Agricultural Initiatives</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <h4 className="font-bold text-green-800 mb-3">SAFE Uganda: Zero Deforestation</h4>
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">Focuses on building forest-positive value chains and sustainable agricultural production systems across the country.</p>
+              <a href="https://zerodeforestationhub.eu/projects/safe/uganda/" target="_blank" rel="noopener noreferrer" className="text-green-700 font-bold text-sm hover:underline flex items-center space-x-1">
+                <span>Explore Project</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </a>
+            </div>
+            <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <h4 className="font-bold text-green-800 mb-3">Upgraded Aquaculture Extension</h4>
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">Newly launched educational materials by MAAIF aimed at modernizing fish farming and boosting aquatic productivity.</p>
+              <a href="https://www.agriculture.go.ug/2020/03/05/upgraded-aquaculture-extension-materials-launched-in-kampala/" target="_blank" rel="noopener noreferrer" className="text-green-700 font-bold text-sm hover:underline flex items-center space-x-1">
+                <span>View Extension Materials</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </a>
+            </div>
+            <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <h4 className="font-bold text-green-800 mb-3">UCSATP: Climate-Smart Transformation</h4>
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">The Uganda Climate-Smart Agricultural Transformation Project focuses on increasing productivity and resilience for smallholder farmers.</p>
+              <a href="https://www.agriculture.go.ug/ucsatp/" target="_blank" rel="noopener noreferrer" className="text-green-700 font-bold text-sm hover:underline flex items-center space-x-1">
+                <span>Project Overview</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Strategic Alignment Section: Agenda 2063 and SDGs */}
+        <div className="mb-20 bg-clay rounded-[3rem] p-10 md:p-12 text-white shadow-xl relative overflow-hidden border-4 border-white/10">
+          <div className="absolute top-0 left-0 african-pattern w-full h-full opacity-5 pointer-events-none"></div>
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl md:text-3xl font-black mb-4 tracking-tight">Linking Agenda 2063 and the Sustainable Development Goals (SDGs)</h2>
+              <p className="text-orange-100 font-medium max-w-2xl">
+                Understanding the synergy between the African Union's strategic framework for the socio-economic transformation of the continent and the UN Global Goals.
+              </p>
+            </div>
+            <a 
+              href="https://au.int/en/agenda2063/sdgs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-yellow-400 text-green-950 px-8 py-4 rounded-2xl font-black hover:bg-white transition-all shadow-lg whitespace-nowrap flex items-center space-x-2"
+            >
+              <span>Explore Strategic Linkages</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
         </div>
 
         {/* Featured Section: EU Erasmus+ Humanness Toolkit */}

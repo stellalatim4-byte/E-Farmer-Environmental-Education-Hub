@@ -23,12 +23,12 @@ export const SERVICE_REFERRALS: ServiceReferral[] = [
 
 export const LIBRARY_ITEMS: LibraryItem[] = [
   {
-    id: 'l1',
-    title: 'Modern Coffee Pruning Techniques',
-    category: 'cooperative',
-    description: 'A comprehensive guide to increasing yield through systemic pruning via the Global Coffee Platform.',
-    languages: [Language.ENGLISH, Language.LUGANDA, Language.ACHOLI],
-    downloadUrl: 'https://www.globalcoffeeplatform.org/wp-content/uploads/2021/04/GCP-Coffee-Sustainability-Reference-Code.pdf'
+    id: 'l4',
+    title: 'Linking Agenda 2063 and the SDGs',
+    category: 'general',
+    description: 'A strategic framework exploring the synergy between the African Union Agenda 2063 and the UN Sustainable Development Goals.',
+    languages: [Language.ENGLISH, Language.FRENCH],
+    downloadUrl: 'https://au.int/en/agenda2063/sdgs'
   },
   {
     id: 'l2',
