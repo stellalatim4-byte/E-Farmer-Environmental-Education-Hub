@@ -131,7 +131,7 @@ const App: React.FC = () => {
                 <h3 className="text-3xl font-black tracking-tight">E-Farmer Hub</h3>
               </div>
               <p className="text-green-100/60 text-lg max-w-md leading-relaxed">
-                Solidarity Learning and Exchange rooted in Gulu-Northern Uganda, serving the Savanna. Empowering different communities through sustainable conservation.
+                Solidarity Learning and Exchange, serving the Savanna. Empowering different communities through sustainable conservation.
               </p>
             </div>
             
@@ -149,17 +149,27 @@ const App: React.FC = () => {
               <h4 className="text-yellow-400 font-bold mb-8 uppercase tracking-[0.3em] text-xs">Follow us</h4>
               <div className="text-green-100/80 text-sm space-y-4 font-bold leading-relaxed flex flex-col items-center md:items-start">
                 {/* TikTok */}
-                <div className="flex items-center space-x-3 group cursor-default">
+                <a 
+                  href="https://www.tiktok.com/@ida_uganda" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center space-x-3 group cursor-pointer"
+                >
                   <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.59-1.01V14.5c.03 5.38-4.43 9.77-9.81 9.77-5.38 0-9.74-4.38-9.74-9.76 0-5.38 4.36-9.75 9.74-9.75.11 0 .22 0 .33.01V8.84c-1.43-.22-2.92.17-3.95 1.22-1.03 1.05-1.42 2.54-1.2 3.97.22 1.43 1.17 2.66 2.5 3.19 1.33.53 2.87.35 3.97-.54.67-.54 1.07-1.34 1.07-2.18V.02z"/>
                     </svg>
                   </div>
                   <span className="group-hover:text-white transition-colors">@ida_uganda</span>
-                </div>
+                </a>
                 
                 {/* Instagram */}
-                <div className="flex items-center space-x-3 group cursor-default">
+                <a 
+                  href="https://www.instagram.com/ida_uganda/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center space-x-3 group cursor-pointer"
+                >
                   <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -168,27 +178,37 @@ const App: React.FC = () => {
                     </svg>
                   </div>
                   <span className="group-hover:text-white transition-colors">@ida_uganda</span>
-                </div>
+                </a>
 
                 {/* X (Twitter) */}
-                <div className="flex items-center space-x-3 group cursor-default">
+                <a 
+                  href="https://x.com/IDA_Uganda" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center space-x-3 group cursor-pointer"
+                >
                   <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298l13.312 17.404Z"/>
                     </svg>
                   </div>
                   <span className="group-hover:text-white transition-colors">IDA_Uganda</span>
-                </div>
+                </a>
 
                 {/* Youtube */}
-                <div className="flex items-center space-x-3 group cursor-default">
+                <a 
+                  href="https://www.youtube.com/@idauganda7590" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center space-x-3 group cursor-pointer"
+                >
                   <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505a3.017 3.017 0 0 0-2.122 2.136C0 8.055 0 12 0 12s0 3.945.501 5.814a3.017 3.017 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.945 24 12 24 12s0-3.945-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                     </svg>
                   </div>
                   <span className="group-hover:text-white transition-colors">@idauganda7590</span>
-                </div>
+                </a>
               </div>
             </div>
           </div>
