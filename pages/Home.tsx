@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { Language } from '../types';
-import { SERVICE_REFERRALS } from '../constants';
 import { Link } from 'react-router-dom';
 
 const QuickAction = ({ icon, title, desc, to, color }: { icon: string, title: string, desc: string, to: string, color: string }) => (

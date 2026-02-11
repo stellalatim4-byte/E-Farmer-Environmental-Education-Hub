@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Language, ServiceReferral, LibraryItem } from './types';
 
 export const LANGUAGES = [
@@ -27,24 +26,27 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     id: 'l1',
     title: 'Modern Coffee Pruning Techniques',
     category: 'cooperative',
-    description: 'A comprehensive guide to increasing yield through systemic pruning.',
+    description: 'A comprehensive guide to increasing yield through systemic pruning via the Global Coffee Platform.',
     languages: [Language.ENGLISH, Language.LUGANDA, Language.ACHOLI],
-    downloadUrl: '#'
+    downloadUrl: 'https://www.globalcoffeeplatform.org/wp-content/uploads/2021/04/GCP-Coffee-Sustainability-Reference-Code.pdf'
   },
   {
     id: 'l2',
     title: 'VSLA Management Handbook',
     category: 'vsla',
-    description: 'Best practices for managing Village Saving and Loan Associations.',
+    description: 'CARE International official 2024 training manual for managing Village Saving and Loan Associations.',
     languages: [Language.ENGLISH, Language.ACHOLI, Language.KISWAHILI],
-    downloadUrl: '#'
+    downloadUrl: 'https://www.care-international.org/sites/default/files/2024-05/VSLA%20Training%20Manual_2024.pdf'
   },
   {
     id: 'l3',
     title: 'Climate Resilience for IDP Communities',
     category: 'refugee',
-    description: 'Adaptation strategies for sustainable farming in displaced settings.',
+    description: 'UNHCR adaptation strategies and resilience building for sustainable farming in displaced settings.',
     languages: [Language.ENGLISH, Language.FRENCH, Language.MADI],
-    downloadUrl: '#'
+    downloadUrl: 'https://www.unhcr.org/sites/default/files/legacy-pdf/61b85fc84.pdf'
   }
 ];
+
+// Updated to the user-provided Google Drive folder
+export const ERASMUS_TOOLKIT_URL = 'https://drive.google.com/drive/mobile/folders/191L7EU_5MZ3sK6VqcbQICTSPTHHBVmgR?usp=sharing&fbclid=PAb21jcAPprkBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafqKy6Iff1YwgWWMFlAJFWkJTBWTeRdjW7J8yntpXjzpIqdmbdnJJFtubJ38w_aem_ALd8JXrUx0sH2JULRWoCtg&utm_source=ig&utm_medium=social&utm_content=link_in_bio';

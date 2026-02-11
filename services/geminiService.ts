@@ -2,7 +2,14 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const getAgriculturalAdvice = async (query: string, language: string) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  // Safety check: ensure API key exists before initialization to prevent crash
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    console.warn("API Key missing. AI Assistant will be in standby mode.");
+    return "I am currently disconnected from the village network. Please check back later or use our E-Library guides.";
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -20,7 +27,7 @@ export const getAgriculturalAdvice = async (query: string, language: string) => 
         temperature: 0.6,
       },
     });
-    return response.text;
+    return response.text || "I processed your request but couldn't generate a clear answer. Try rephrasing.";
   } catch (error) {
     console.error("Gemini Error:", error);
     return "I am resting my ears. Please try again soon, or check the E-Library for written guides.";
