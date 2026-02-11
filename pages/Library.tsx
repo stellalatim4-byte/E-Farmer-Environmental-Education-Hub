@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { LIBRARY_ITEMS, ERASMUS_TOOLKIT_URL } from '../constants';
+import { LIBRARY_ITEMS, ERASMUS_TOOLKIT_URL, COMMUNITY_HUBS } from '../constants';
 import { Language } from '../types';
 
 interface LibraryProps {
@@ -9,10 +9,55 @@ interface LibraryProps {
 
 const Library: React.FC<LibraryProps> = () => {
   const [filter, setFilter] = useState<string>('all');
+  const [isLocating, setIsLocating] = useState(false);
+  const [nearestHubs, setNearestHubs] = useState<any[]>([]);
+  const [locationError, setLocationError] = useState<string | null>(null);
 
   const filteredItems = filter === 'all' 
     ? LIBRARY_ITEMS 
     : LIBRARY_ITEMS.filter(item => item.category === filter);
+
+  const deg2rad = (deg: number) => deg * (Math.PI / 180);
+  
+  const getDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+    const R = 6371;
+    const dLat = deg2rad(lat2 - lat1);
+    const dLon = deg2rad(lon2 - lon1);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  const handleLocateHubs = () => {
+    setIsLocating(true);
+    setLocationError(null);
+
+    if (!navigator.geolocation) {
+      setLocationError("Geolocation is not supported by your browser.");
+      setIsLocating(false);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const hubsWithDistance = COMMUNITY_HUBS.map(hub => ({
+          ...hub,
+          distance: getDistance(latitude, longitude, hub.lat, hub.lng)
+        })).sort((a, b) => a.distance - b.distance);
+
+        setNearestHubs(hubsWithDistance.slice(0, 3));
+        setIsLocating(false);
+      },
+      (error) => {
+        setLocationError("Unable to retrieve your location. Using default village list.");
+        setNearestHubs(COMMUNITY_HUBS.slice(0, 3));
+        setIsLocating(false);
+      }
+    );
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -186,15 +231,72 @@ const Library: React.FC<LibraryProps> = () => {
           </div>
         </div>
 
-        {/* Support Section */}
-        <div className="bg-white p-10 md:p-16 rounded-[3rem] border border-gray-100 text-center shadow-sm">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Accessing these files offline?</h3>
-          <p className="text-gray-600 mb-8 max-w-xl mx-auto font-medium leading-relaxed">
-            If you have limited internet access, visit your local community hub where these resources are pre-loaded on local servers and available for free printing.
-          </p>
-          <button className="bg-green-700 text-white px-10 py-4 rounded-2xl font-black hover:bg-green-800 transition shadow-xl hover:-translate-y-1">
-            Find Local Community Hub
-          </button>
+        {/* Support Section with Community Hub Locator */}
+        <div className="bg-white p-10 md:p-16 rounded-[3rem] border border-gray-100 text-center shadow-sm relative overflow-hidden">
+          <div className="relative z-10">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Accessing these files offline?</h3>
+            <p className="text-gray-600 mb-8 max-w-xl mx-auto font-medium leading-relaxed">
+              If you have limited internet access, visit your local community hub where these resources are pre-loaded on local servers and available for free printing.
+            </p>
+            
+            <div className="flex flex-col items-center">
+              <button 
+                onClick={handleLocateHubs}
+                disabled={isLocating}
+                className={`bg-green-700 text-white px-10 py-4 rounded-2xl font-black hover:bg-green-800 transition shadow-xl hover:-translate-y-1 flex items-center space-x-3 ${isLocating ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                {isLocating ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Locating nearest hubs...</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Find Local Community Hub</span>
+                  </>
+                )}
+              </button>
+
+              {locationError && (
+                <p className="mt-4 text-orange-600 text-sm font-bold animate-pulse">{locationError}</p>
+              )}
+
+              {nearestHubs.length > 0 && (
+                <div className="mt-12 w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-6 animate-in slide-in-from-bottom-5 duration-500">
+                  {nearestHubs.map(hub => (
+                    <div key={hub.id} className="bg-gray-50 p-6 rounded-[2rem] border border-gray-100 text-left hover:shadow-md transition-shadow">
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-[10px] font-black text-green-700 bg-green-100 px-2 py-1 rounded-full uppercase tracking-widest">
+                          {hub.distance ? `${hub.distance.toFixed(1)} km away` : 'Near you'}
+                        </span>
+                      </div>
+                      <h4 className="font-bold text-gray-900 mb-1">{hub.name}</h4>
+                      <p className="text-[10px] text-gray-500 mb-4">{hub.address}</p>
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {hub.services.map((s: string) => (
+                          <span key={s} className="text-[8px] bg-white border border-gray-200 text-gray-400 px-1.5 py-0.5 rounded-md font-bold uppercase">{s}</span>
+                        ))}
+                      </div>
+                      <a 
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${hub.lat},${hub.lng}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-green-700 font-bold text-xs flex items-center space-x-1 hover:underline"
+                      >
+                        <span>Get Directions</span>
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-green-50 rounded-full opacity-50 blur-2xl"></div>
         </div>
       </div>
     </div>

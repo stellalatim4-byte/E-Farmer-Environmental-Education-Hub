@@ -2,6 +2,7 @@
   "name": "E-Farmer Environmental Education Hub",
   "description": "A virtual collaborative hub for farmers, youth, and women in Africa to share knowledge, best practices, and access agricultural services, with specialized support for Gulu District and conflict-affected communities.",
   "requestFramePermissions": [
-    "microphone"
+    "microphone",
+    "geolocation"
   ]
 }

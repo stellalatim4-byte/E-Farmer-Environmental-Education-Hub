@@ -48,5 +48,13 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
   }
 ];
 
+export const COMMUNITY_HUBS = [
+  { id: 'h1', name: 'Gulu City Central Hub', lat: 2.775, lng: 32.300, address: 'Main St, Gulu City', services: ['Free Printing', 'Offline Library', 'Seed Exchange'] },
+  { id: 'h2', name: 'Pece Community Hub', lat: 2.768, lng: 32.315, address: 'Pece Division Center', services: ['VSLA Training', 'Internet Hotspot'] },
+  { id: 'h3', name: 'Layibi Agri-Innovation Center', lat: 2.755, lng: 32.285, address: 'Layibi South', services: ['Tool Lending', 'Soil Testing'] },
+  { id: 'h4', name: 'Laroo Youth Hub', lat: 2.785, lng: 32.310, address: 'Laroo Market Road', services: ['Digital Skills', 'Micro-Finance Hub'] },
+  { id: 'h5', name: 'Bardege Refugee Support Center', lat: 2.790, lng: 32.280, address: 'Bardege Division', services: ['Translation Services', 'Climate Resilience Training'] },
+];
+
 // Updated to the user-provided Google Drive folder
 export const ERASMUS_TOOLKIT_URL = 'https://drive.google.com/drive/mobile/folders/191L7EU_5MZ3sK6VqcbQICTSPTHHBVmgR?usp=sharing&fbclid=PAb21jcAPprkBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafqKy6Iff1YwgWWMFlAJFWkJTBWTeRdjW7J8yntpXjzpIqdmbdnJJFtubJ38w_aem_ALd8JXrUx0sH2JULRWoCtg&utm_source=ig&utm_medium=social&utm_content=link_in_bio';
