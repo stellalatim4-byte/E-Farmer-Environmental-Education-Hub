@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
@@ -5,6 +6,7 @@ import Forum from './pages/Forum';
 import Library from './pages/Library';
 import Market from './pages/Market';
 import Referrals from './pages/Referrals';
+import FarmerPortal from './pages/FarmerPortal';
 import AIAssistant from './components/AIAssistant';
 import { LANGUAGES } from './constants';
 import { Language } from './types';
@@ -35,26 +37,27 @@ const App: React.FC = () => {
               </div>
 
               {/* Desktop Nav */}
-              <div className="hidden lg:flex items-center space-x-10">
-                <Link to="/" className="text-gray-700 hover:text-green-700 font-bold text-sm transition-colors uppercase tracking-widest">Home</Link>
-                <Link to="/forum" className="text-gray-700 hover:text-green-700 font-bold text-sm transition-colors uppercase tracking-widest">Village Forum</Link>
-                <Link to="/library" className="text-gray-700 hover:text-green-700 font-bold text-sm transition-colors uppercase tracking-widest">Library</Link>
-                <Link to="/market" className="text-gray-700 hover:text-green-700 font-bold text-sm transition-colors uppercase tracking-widest">Market</Link>
-                <Link to="/referrals" className="text-gray-700 hover:text-green-700 font-bold text-sm transition-colors uppercase tracking-widest">Services</Link>
+              <div className="hidden lg:flex items-center space-x-8">
+                <Link to="/" className="text-gray-700 hover:text-green-700 font-bold text-xs transition-colors uppercase tracking-widest">Home</Link>
+                <Link to="/forum" className="text-gray-700 hover:text-green-700 font-bold text-xs transition-colors uppercase tracking-widest">Forum</Link>
+                <Link to="/library" className="text-gray-700 hover:text-green-700 font-bold text-xs transition-colors uppercase tracking-widest">Library</Link>
+                <Link to="/market" className="text-gray-700 hover:text-green-700 font-bold text-xs transition-colors uppercase tracking-widest">Market</Link>
+                <Link to="/referrals" className="text-gray-700 hover:text-green-700 font-bold text-xs transition-colors uppercase tracking-widest">Services</Link>
+                <Link to="/portal" className="text-green-700 border-2 border-green-700/30 bg-green-50 px-4 py-2 rounded-xl font-black text-xs transition-all hover:bg-green-700 hover:text-white uppercase tracking-widest">Impact Portal</Link>
                 
                 <div className="h-8 w-px bg-gray-200"></div>
 
                 <select 
                   value={currentLang}
                   onChange={(e) => setCurrentLang(e.target.value as Language)}
-                  className="bg-gray-50 border border-gray-200 text-[10px] font-black rounded-xl focus:ring-green-500 focus:border-green-500 p-3 cursor-pointer uppercase tracking-widest"
+                  className="bg-gray-50 border border-gray-200 text-[10px] font-black rounded-xl focus:ring-green-500 focus:border-green-500 p-2 cursor-pointer uppercase tracking-widest"
                 >
                   {LANGUAGES.map(lang => (
                     <option key={lang.code} value={lang.code}>{lang.name}</option>
                   ))}
                 </select>
 
-                <button className="bg-clay text-white px-8 py-3 rounded-2xl font-bold hover:bg-green-800 transition-all shadow-xl shadow-clay/20 text-sm">
+                <button className="bg-clay text-white px-6 py-2 rounded-xl font-bold hover:bg-green-800 transition-all shadow-xl shadow-clay/20 text-xs">
                   Login
                 </button>
               </div>
@@ -77,7 +80,7 @@ const App: React.FC = () => {
                 <Link to="/" onClick={() => setIsMenuOpen(false)} className="p-6 bg-gray-50 rounded-3xl text-center font-bold text-gray-700">Home</Link>
                 <Link to="/forum" onClick={() => setIsMenuOpen(false)} className="p-6 bg-gray-50 rounded-3xl text-center font-bold text-gray-700">Forum</Link>
                 <Link to="/library" onClick={() => setIsMenuOpen(false)} className="p-6 bg-gray-50 rounded-3xl text-center font-bold text-gray-700">Library</Link>
-                <Link to="/market" onClick={() => setIsMenuOpen(false)} className="p-6 bg-gray-50 rounded-3xl text-center font-bold text-gray-700">Market</Link>
+                <Link to="/portal" onClick={() => setIsMenuOpen(false)} className="p-6 bg-green-50 text-green-700 rounded-3xl text-center font-bold">Impact Portal</Link>
               </div>
               <div className="pt-2">
                 <select 
@@ -103,17 +106,17 @@ const App: React.FC = () => {
             <Route path="/library" element={<Library language={currentLang} />} />
             <Route path="/market" element={<Market language={currentLang} />} />
             <Route path="/referrals" element={<Referrals language={currentLang} />} />
+            <Route path="/portal" element={<FarmerPortal language={currentLang} />} />
           </Routes>
         </main>
 
         {/* Floating AI Assistant */}
         <AIAssistant language={currentLang} />
 
-        {/* Footer with African Savanna Motif */}
+        {/* Footer */}
         <footer className="bg-green-950 text-white py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
           <div className="absolute inset-0 opacity-5 african-pattern pointer-events-none"></div>
           
-          {/* Subtle Hut Ornaments in Footer */}
           <div className="absolute bottom-0 right-0 w-1/4 h-32 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 300 100" preserveAspectRatio="none">
               <path d="M50 100 L250 100 L150 0 Z" fill="white" />
@@ -140,7 +143,7 @@ const App: React.FC = () => {
               <ul className="space-y-5 text-sm font-semibold">
                 <li><Link to="/forum" className="hover:text-yellow-400 transition-colors">Village Forum</Link></li>
                 <li><Link to="/library" className="hover:text-yellow-400 transition-colors">E-Library</Link></li>
-                <li><Link to="/market" className="hover:text-yellow-400 transition-colors">Digital Market</Link></li>
+                <li><Link to="/portal" className="hover:text-yellow-400 transition-colors">Impact Portal</Link></li>
                 <li><Link to="/referrals" className="hover:text-yellow-400 transition-colors">Social Services</Link></li>
               </ul>
             </div>
@@ -148,66 +151,17 @@ const App: React.FC = () => {
             <div>
               <h4 className="text-yellow-400 font-bold mb-8 uppercase tracking-[0.3em] text-xs">Follow us</h4>
               <div className="text-green-100/80 text-sm space-y-4 font-bold leading-relaxed flex flex-col items-center md:items-start">
-                {/* TikTok */}
-                <a 
-                  href="https://www.tiktok.com/@ida_uganda" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center space-x-3 group cursor-pointer"
-                >
+                <a href="https://www.tiktok.com/@ida_uganda" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 group">
                   <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.59-1.01V14.5c.03 5.38-4.43 9.77-9.81 9.77-5.38 0-9.74-4.38-9.74-9.76 0-5.38 4.36-9.75 9.74-9.75.11 0 .22 0 .33.01V8.84c-1.43-.22-2.92.17-3.95 1.22-1.03 1.05-1.42 2.54-1.2 3.97.22 1.43 1.17 2.66 2.5 3.19 1.33.53 2.87.35 3.97-.54.67-.54 1.07-1.34 1.07-2.18V.02z"/>
-                    </svg>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.59-1.01V14.5c.03 5.38-4.43 9.77-9.81 9.77-5.38 0-9.74-4.38-9.74-9.76 0-5.38 4.36-9.75 9.74-9.75.11 0 .22 0 .33.01V8.84c-1.43-.22-2.92.17-3.95 1.22-1.03 1.05-1.42 2.54-1.2 3.97.22 1.43 1.17 2.66 2.5 3.19 1.33.53 2.87.35 3.97-.54.67-.54 1.07-1.34 1.07-2.18V.02z"/></svg>
                   </div>
-                  <span className="group-hover:text-white transition-colors">@ida_uganda</span>
+                  <span>@ida_uganda</span>
                 </a>
-                
-                {/* Instagram */}
-                <a 
-                  href="https://www.instagram.com/ida_uganda/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center space-x-3 group cursor-pointer"
-                >
+                <a href="https://www.instagram.com/ida_uganda/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 group">
                   <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                   </div>
-                  <span className="group-hover:text-white transition-colors">@ida_uganda</span>
-                </a>
-
-                {/* X (Twitter) */}
-                <a 
-                  href="https://x.com/IDA_Uganda" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center space-x-3 group cursor-pointer"
-                >
-                  <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298l13.312 17.404Z"/>
-                    </svg>
-                  </div>
-                  <span className="group-hover:text-white transition-colors">IDA_Uganda</span>
-                </a>
-
-                {/* Youtube */}
-                <a 
-                  href="https://www.youtube.com/@idauganda7590" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center space-x-3 group cursor-pointer"
-                >
-                  <div className="bg-white/10 p-2 rounded-lg group-hover:bg-yellow-400 group-hover:text-green-950 transition-all">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505a3.017 3.017 0 0 0-2.122 2.136C0 8.055 0 12 0 12s0 3.945.501 5.814a3.017 3.017 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.945 24 12 24 12s0-3.945-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                  </div>
-                  <span className="group-hover:text-white transition-colors">@idauganda7590</span>
+                  <span>@ida_uganda</span>
                 </a>
               </div>
             </div>
@@ -215,15 +169,8 @@ const App: React.FC = () => {
           
           <div className="mt-20 pt-10 border-t border-white/5 text-center">
             <div className="max-w-3xl mx-auto space-y-4">
-              <p className="text-green-100/40 text-[10px] font-bold uppercase tracking-[0.4em]">
-                © 2026 Intercultural Development Agency (IDA). All rights reserved.
-              </p>
-              <p className="text-green-100/30 text-[11px] leading-relaxed italic">
-                This app is provided free of charge. Its content, design, and software may not be reproduced, modified, redistributed, or used for commercial purposes without prior written permission.
-              </p>
-              <p className="text-green-100/20 text-[9px] uppercase tracking-widest mt-4">
-                Supporting SDGs 1.5, 4, 5, 17 and UNFCCC Article 7 Adaptation Goals.
-              </p>
+              <p className="text-green-100/40 text-[10px] font-bold uppercase tracking-[0.4em]">© 2026 Intercultural Development Agency (IDA). All rights reserved.</p>
+              <p className="text-green-100/30 text-[11px] leading-relaxed italic">Supporting SDGs 1.5, 4, 5, 17 and UNFCCC Article 7 Adaptation Goals.</p>
             </div>
           </div>
         </footer>
