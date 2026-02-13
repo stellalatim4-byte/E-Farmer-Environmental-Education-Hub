@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Language } from '../types';
 import { Link } from 'react-router-dom';
@@ -36,9 +37,14 @@ const Home: React.FC<{ language: Language }> = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white z-20">
           <div className="max-w-2xl">
-            <span className="inline-block px-4 py-1 bg-yellow-400 text-green-950 font-black rounded-full text-[10px] uppercase tracking-widest mb-6">
-              VIRTUAL WANG-OO
-            </span>
+            <div className="flex items-center space-x-3 mb-6">
+              <span className="inline-block px-4 py-1 bg-yellow-400 text-green-950 font-black rounded-full text-[10px] uppercase tracking-widest">
+                VIRTUAL WANG-OO
+              </span>
+              <span className="inline-block px-4 py-1 bg-white/10 backdrop-blur-md border border-white/30 text-white font-black rounded-full text-[10px] uppercase tracking-widest">
+                <strong>AGRITECH</strong>
+              </span>
+            </div>
             <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
               Smart Farming <br/>
               <span className="text-yellow-400">Made Simple.</span>
@@ -136,7 +142,7 @@ const Home: React.FC<{ language: Language }> = () => {
               <div className="space-y-4 mb-12">
                 <p className="text-xl md:text-2xl font-bold text-yellow-400">Keep our apps free for every user.</p>
                 <p className="text-lg md:text-xl font-medium text-orange-50">Help us grow thriving communities together. ✨</p>
-                <p className="text-lg md:text-xl font-medium text-orange-50">Support our work in AGRITECH and community initiatives.</p>
+                <p className="text-lg md:text-xl font-medium text-orange-50">Support our work in <strong>AGRITECH</strong> and community initiatives.</p>
               </div>
 
               <div className="mb-12">
@@ -146,7 +152,7 @@ const Home: React.FC<{ language: Language }> = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-3 bg-yellow-400 text-green-950 px-10 py-6 rounded-3xl font-black text-xl hover:bg-white transition-all transform hover:-translate-y-2 shadow-xl"
                 >
-                  <span>👉 Purchase the eBook and invest in AGRITECH</span>
+                  <span>👉 Purchase the eBook and invest in <strong>AGRITECH</strong></span>
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
